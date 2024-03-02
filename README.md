@@ -65,3 +65,46 @@ const db = require("./database/conection"); // Ajusta la ruta según la ubicaci�
 
 // Ahora puedes usar la conexión para interactuar con la base de datos
 // Ejemplo: consulta, inserción, actualización, eliminación, etc.
+
+5.-Creamos el servidor de node 
+  *Importamos express 
+//
+6.-Creamos el esquema para los artyiculos en un archivo llamadao 
+  Articulo.js dentro de una carpeta nueva llamada modelos 
+  const{Schema,model}=require("mongoose");
+
+const ArticuloSchema=Schema({
+    titulo:{
+        type: String,
+        require:true
+    },
+    contenido:{
+        type:String,
+        require:true},
+    fecha:{
+        type:Date,
+        default:Date.now
+    },
+    imagen:{
+        type:String,
+        default:"default.png"
+    }
+})
+//Exportamos la colexion, el tercer parametyro es la colleccion a la 
+module.exports=model("Articulo",ArticuloSchema,"articulos");
+//
+7.Creamos los contyroladores los cuales manejaran cviertas acciones 
+
+// relaizaremos porgramacion funcional 
+const prueba=(req,res)=>{ //recordemos req y res es el requeriemiento y su respuesta 
+
+    return res.status(200).json({
+        mensaje:"Soy una accion de prueba en mi controladfor de articulos "
+    })
+
+}
+
+module.exports={
+    prueba
+}
+8
