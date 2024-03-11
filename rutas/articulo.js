@@ -47,6 +47,11 @@ router.put("/articulo/:id", ArticuloController.editar);
 // subir archivo  
 router.post("/subir-imagen/:id", subidas.single("file0"),ArticuloController.subir);
 
+// subir archivo  
+router.get("/imagen/:fichero",ArticuloController.imagen);
+
+// subir buscador  
+router.get("/buscar/:busqueda",ArticuloController.buscador);
 
 
 module.exports=router;
