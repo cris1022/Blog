@@ -1,5 +1,4 @@
-// Otro archivo (por ejemplo, index.js)
-const { connectToDatabase } = require("./database/conection"); // Ajusta la ruta según la ubicación de tu archivo
+const { connectToDatabase } = require("./database/conection");
 const express = require("express");
 const cors = require("cors");
 

@@ -4,10 +4,7 @@ const mongoose = require("mongoose");
 const connectToDatabase = async () => {
     try {
         // Conexión a la base de datos
-        await mongoose.connect("mongodb://localhost:27017/Blog", {
-            useNewUrlParser: true,
-            useUnifiedTopology: true
-        });
+        await mongoose.connect("mongodb://localhost:27017/Blog");
 
         console.log("Conexión establecida con MongoDB");
     } catch (error) {
