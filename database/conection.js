@@ -1,10 +1,11 @@
+require('dotenv').config();
 const mongoose = require("mongoose");
 
 // Función para conectar a la base de datos
 const connectToDatabase = async () => {
     try {
-        // Conexión a la base de datos MongoDB Atlas utilizando la cadena de conexión SRV URI
-        await mongoose.connect(process.env.MONGODB_URI);
+        // Conexión a la base de datos MongoDB Atlas utilizando la cadena de conexión SRV URI definida en el archivo .env
+        await mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
         console.log("Conexión establecida con MongoDB");
     } catch (error) {
