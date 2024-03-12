@@ -1,6 +1,6 @@
-const { connectToDatabase } = require("./database/conection");
 const express = require("express");
 const cors = require("cors");
+const { connectToDatabase } = require("./database/conection"); // Importar la función connectToDatabase
 
 //Creamos el servidor de node 
 const app = express();
@@ -13,7 +13,7 @@ app.use(cors());
 app.use(express.json()); // Recibir datos con content type app/json
 app.use(express.urlencoded({ extended: true })); // Form /undencoded 
 
-// Conectar a la base de datos
+// Llamar a la función connectToDatabase para conectar a la base de datos
 connectToDatabase()
     .then(() => {
         // Rutas
