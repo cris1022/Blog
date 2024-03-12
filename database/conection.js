@@ -1,21 +1,21 @@
 const mongoose = require("mongoose");
 
-// URL de conexión a tu base de datos (cambia según tus credenciales y configuración)
-const dbUrl = "mongodb+srv://abondano930719:Novo12345@cluster9307.lknvmo6.mongodb.net/mi_blog"; // Cambia "mi_blog" al nombre de tu base de datos
+// Función para conectar a la base de datos
+const connectToDatabase = async () => {
+    try {
+        // Conexión a la base de datos
+        await mongoose.connect("mongodb://localhost:27017/Blog", {
+            useNewUrlParser: true,
+            useUnifiedTopology: true
+        });
 
-// Opciones de conexión de MongoDB
-const dbOptions = {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
+        console.log("Conexión establecida con MongoDB");
+    } catch (error) {
+        console.error("Error al conectar con la base de datos:", error);
+        throw new Error("No se ha podido conectar a la base de datos");
+    }
 };
 
-// Conexión a MongoDB
-mongoose.connect(dbUrl, dbOptions)
-  .then(() => console.log("Conexión exitosa a la base de datos"))
-  .catch(error => console.error("Error de conexión:", error));
-
-// Manejo de eventos de conexión
-const db = mongoose.connection;
-
-// Exporta la conexión para usarla en otros archivos
-module.exports = db;
+module.exports = {
+    connectToDatabase
+};

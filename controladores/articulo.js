@@ -21,10 +21,10 @@ const crear = async (req, res) => {
         let parametros = req.body;
 
         // Validar los datos
-        let Validar_titulo = !validator.isEmpty(parametros.titulo) && validator.isLength(parametros.titulo, { min: 5, max: 30 });
-        let validar_contenido = !validator.isEmpty(parametros.contenido);
+        let validarTitulo = !validator.isEmpty(parametros.titulo) && validator.isLength(parametros.titulo, { min: 1, max: 100 });
+        let validarContenido = !validator.isEmpty(parametros.contenido);
 
-        if (!Validar_titulo || !validar_contenido) {
+        if (!validarTitulo || !validarContenido) {
             throw new Error("No se ha validado la información");
         }
 

@@ -1,46 +1,41 @@
 // Otro archivo (por ejemplo, index.js)
-const db = require("./database/conection"); // Ajusta la ruta según la ubicación de tu archivo
-// Importamos express
-const express=require("express");
-// Importamos cors 
-const cors=require("cors");
-
-
-// Ahora puedes usar la conexión para interactuar con la base de datos
-// Ejemplo: consulta, inserción, actualización, eliminación, etc.
+const { connectToDatabase } = require("./database/conection"); // Ajusta la ruta según la ubicación de tu archivo
+const express = require("express");
+const cors = require("cors");
 
 //Creamos el servidor de node 
-const app= express();
-const puerto=3900;
+const app = express();
+const puerto = 3900;
 
-//configuramos cors 
+// Configuramos cors 
 app.use(cors());
 
-//Leer y convertir el body a un objeto js 
-app.use(express.json());//recibir datos con content type app/json
-app.use(express.urlencoded({extended:true}));//form /undencoded 
+// Leer y convertir el body a un objeto js 
+app.use(express.json()); // Recibir datos con content type app/json
+app.use(express.urlencoded({ extended: true })); // Form /undencoded 
 
-//rutas
+// Conectar a la base de datos
+connectToDatabase()
+    .then(() => {
+        // Rutas
+        const rutasArticulo = require("./rutas/articulo");
 
-const rutas_articulo=require("./rutas/articulo");
+        // Cargamos las rutas 
+        app.use("/api", rutasArticulo);
 
-//cargamos las rutas 
+        // Crear rutas 
+        // Prueba
+        app.get("/probando", (req, res) => {
+            console.log("Se ha ejecutado el endpoint probando");
+            return res.status(200).send({});
+        });
 
-app.use("/api", rutas_articulo);
-
-app.use(express.json());
-
-//Crear rutas 
-//prueba
-app.get("/probando",(req, res)=>{
-    console.log("Se ha ejecutado el end point probando")
-    return res.status(200).send({
-
+        // Crear servidor y escuchar peticiones http
+        app.listen(puerto, () => {
+            console.log("Servidor corriendo en el puerto " + puerto);
+        });
+    })
+    .catch(error => {
+        console.error("Error al conectar con la base de datos:", error.message);
+        process.exit(1); // Salir de la aplicación si no se puede conectar a la base de datos
     });
-});
-
-//Crear servidor y escuchar peticiones http
-app.listen(puerto, () => {
-    console.log(" Servidor corriendo en el puerto " + puerto)
-
-});
