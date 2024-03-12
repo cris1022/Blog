@@ -52,7 +52,7 @@ const listar = async (req, res) => {
     try {
         // Obtener todos los artículos
         let consulta = await Articulo.find({})
-        .limit(2)
+        .limit(20)
        
         
        .sort({fecha:1});
