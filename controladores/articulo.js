@@ -81,10 +81,10 @@ const listar = async (req, res) => {
 const uno = async (req, res) => {
     try {
         // Recoger un id por la url
-        let id = req.params.id;
+        let Id = req.params.Id;
 
         // Buscar el artículo
-        const articulo = await Articulo.findById(id);
+        const articulo = await Articulo.findById(Id);
 
         // Si no existe, devolver error
         if (!articulo) {
@@ -109,7 +109,7 @@ const uno = async (req, res) => {
  // Borrar un artículo por su ID
  const borrar = async (req, res) => {
     try {
-        const articuloId = req.params.id; // Obtener el ID del artículo desde los parámetros de la solicitud
+        const articuloId = req.params.Id; // Obtener el ID del artículo desde los parámetros de la solicitud
 
         // Buscar y eliminar el artículo por su ID
         const articuloEliminado = await Articulo.findOneAndDelete(articuloId)
@@ -136,7 +136,7 @@ const uno = async (req, res) => {
 // Editar un artículo por su ID
 const editar = async (req, res) => {
     try {
-        const articuloId = req.params.id; // Obtener el ID del artículo desde los parámetros de la solicitud
+        const articuloId = req.params.Id; // Obtener el ID del artículo desde los parámetros de la solicitud
         const nuevosParametros = req.body; // Obtener los nuevos parámetros desde el cuerpo de la solicitud
 
         // Validar los datos (puedes agregar más validaciones según tus necesidades)
@@ -202,7 +202,7 @@ const subir = async (req, res) => {
         });
     } else {
         try {
-            const articuloId = req.params.id; // Obtener el ID del artículo desde los parámetros de la solicitud
+            const articuloId = req.params.Id; // Obtener el ID del artículo desde los parámetros de la solicitud
 
             // Buscar y actualizar el artículo por su ID
             const articuloActualizado = await Articulo.findByIdAndUpdate(articuloId, { imagen: req.file.filename }, { new: true });

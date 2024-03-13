@@ -36,16 +36,16 @@ router.post("/crear", ArticuloController.crear);
 router.get("/articulos/:ultimos?", ArticuloController.listar);
 
 // Obtener un solo artículo por su ID
-router.get("/articulo/:id", ArticuloController.uno);
+router.get("/articulo/:Id", ArticuloController.uno);
 
 // Borrar un artículo por su ID
-router.delete("/articulo/:id", ArticuloController.borrar);
+router.delete("/articulo/:Id", ArticuloController.borrar);
 
 // Editar articulo 
-router.put("/articulo/:id", ArticuloController.editar);
+router.put("/articulo/:Id", ArticuloController.editar);
 
 // subir archivo  
-router.post("/subir-imagen/:id", subidas.single("file0"),ArticuloController.subir);
+router.post("/subir-imagen/:Id", subidas.single("file0"),ArticuloController.subir);
 
 // subir archivo  
 router.get("/imagen/:fichero",ArticuloController.imagen);
